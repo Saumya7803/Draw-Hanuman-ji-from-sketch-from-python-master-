@@ -110,7 +110,10 @@ def build_video(svg_file: str = "hanumanji.svg", out_file: str = "demo.mp4"):
     shifted = []
     for poly, color in polygons:
         pts = np.array(
-            [((x - min_x + margin) * render_scale, (y - min_y + margin) * render_scale) for x, y in poly],
+            [
+                ((x - min_x + margin) * render_scale, (max_y - y + margin) * render_scale)
+                for x, y in poly
+            ],
             dtype=np.int32,
         )
         shifted.append((pts, color))
